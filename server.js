@@ -1,7 +1,8 @@
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
-const express = require("express");
-const cors = require("cors");
+dotenv.config();
 
 const app = express();
 
@@ -25,10 +26,10 @@ app.get("/api/league/:leagueId", async (req, res) => {
     const data = await response.json();
 
     res.status(response.status).json(data);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({
-      error: "Failed to load league"
+      error: error.message
     });
   }
 });
@@ -36,5 +37,5 @@ app.get("/api/league/:leagueId", async (req, res) => {
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
-  console.log(`Server started on ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
