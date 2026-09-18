@@ -441,19 +441,25 @@ function normalizeEspnResponse(payload, configuration) {
         game.away.pointsByScoringPeriod
     );
 
-    
+
     matchups[week].push({
       homeTeamId: game.home.teamId,
       awayTeamId: game.away.teamId,
       homeScore:
-          game.home.totalPoints ??
-          game.home.pointsByScoringPeriod?.[week] ??
-          0,
+          Math.max(
+              ...(Object.values(
+                  game.home.pointsByScoringPeriod || {}
+              )),
+              game.home.totalPoints || 0
+          ),
 
       awayScore:
-          game.away.totalPoints ??
-          game.away.pointsByScoringPeriod?.[week] ??
-          0,
+          Math.max(
+              ...(Object.values(
+                  game.away.pointsByScoringPeriod || {}
+              )),
+              game.away.totalPoints || 0
+          ),
     });
   });
 
