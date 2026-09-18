@@ -19,7 +19,7 @@ app.get("/api/league/:leagueId", async (req, res) => {
     const { leagueId } = req.params;
 
     const response = await fetch(
-        `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues/${leagueId}?view=mTeam&view=mMatchup&view=mStandings&view=mSettings`,
+        `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues/${leagueId}?view=mTeam&view=mMatchup&view=mStandings&view=mSettings&view=mLiveScoring`,
         {
           headers: {
             Cookie: `SWID=${process.env.ESPN_SWID_1}; espn_s2=${process.env.ESPN_S2_1}`,

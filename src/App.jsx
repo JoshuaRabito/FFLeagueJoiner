@@ -645,6 +645,14 @@ export default function App() {
 
   const weeklyMatchups =
       activeLeague?.matchups?.[week] || [];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadBothLeagues();
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     try {
