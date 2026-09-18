@@ -643,9 +643,14 @@ export default function App() {
     );
   }, [activeLeague]);
 
+  console.log("Current Week", activeLeague.currentWeek);
+  console.log("Selected Week", week);
+  console.log("Available Weeks", Object.keys(activeLeague.matchups || {}));
+  console.log("Weekly Matchups", activeLeague?.matchups?.[week]);
+  
   const weeklyMatchups =
       activeLeague?.matchups?.[week] || [];
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       loadBothLeagues();
