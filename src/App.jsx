@@ -416,11 +416,26 @@ function normalizeEspnResponse(payload, configuration) {
       matchups[week] = [];
     }
 
+    console.log(
+        "Week:", week,
+        "Home Team:", game.home.teamId,
+        "Home Points:", game.home.totalPoints,
+        "Away Team:", game.away.teamId,
+        "Away Points:", game.away.totalPoints
+    );
+
     matchups[week].push({
       homeTeamId: game.home.teamId,
       awayTeamId: game.away.teamId,
-      homeScore: game.home.totalPoints || 0,
-      awayScore: game.away.totalPoints || 0,
+      homeScore:
+          game.home.totalPoints ??
+          game.home.pointsByScoringPeriod?.[week] ??
+          0,
+
+      awayScore:
+          game.away.totalPoints ??
+          game.away.pointsByScoringPeriod?.[week] ??
+          0,
     });
   });
 
@@ -647,7 +662,7 @@ export default function App() {
   console.log("Selected Week", week);
   console.log("Available Weeks", Object.keys(activeLeague.matchups || {}));
   console.log("Weekly Matchups", activeLeague?.matchups?.[week]);
-  
+
   const weeklyMatchups =
       activeLeague?.matchups?.[week] || [];
 
