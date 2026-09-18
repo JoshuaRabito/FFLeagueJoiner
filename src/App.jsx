@@ -671,18 +671,9 @@ export default function App() {
   }, [activeLeagueId, leagues]);
 
   async function loadEspnLeague(configuration) {
-    const leaguePath =
-        `/apis/v3/games/ffl/seasons/` +
-        `${configuration.season}/segments/0/leagues/` +
-        `${configuration.leagueId}` +
-        `?view=mTeam` +
-        `&view=mMatchup` +
-        `&view=mStandings` +
-        `&view=mSettings`;
 
-    const requestUrl = proxyBaseUrl
-        ? `${proxyBaseUrl.replace(/\/$/, "")}${leaguePath}`
-        : `https://lm-api-reads.fantasy.espn.com${leaguePath}`;
+    const requestUrl =
+        `/api/league/${configuration.leagueId}`;
 
     const response = await fetch(requestUrl, {
       method: "GET",
