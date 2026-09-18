@@ -424,6 +424,24 @@ function normalizeEspnResponse(payload, configuration) {
         "Away Points:", game.away.totalPoints
     );
 
+    console.log(
+        "Week:",
+        week,
+        "Home:",
+        game.home.teamId,
+        "Score:",
+        game.home.totalPoints,
+        "Periods:",
+        game.home.pointsByScoringPeriod,
+        "Away:",
+        game.away.teamId,
+        "Score:",
+        game.away.totalPoints,
+        "Periods:",
+        game.away.pointsByScoringPeriod
+    );
+
+    
     matchups[week].push({
       homeTeamId: game.home.teamId,
       awayTeamId: game.away.teamId,
