@@ -692,6 +692,8 @@ export default function App() {
 
     try {
       payload = await response.json();
+      console.log("League Data", payload);
+      console.log("Schedule", payload.schedule);
     } catch {
       throw new Error(
           `${configuration.name} returned invalid JSON`
